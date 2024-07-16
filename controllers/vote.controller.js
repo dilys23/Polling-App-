@@ -32,8 +32,8 @@ const createPoll = async(req, res)=>
         }
         res.status(201).json(
             {
-                message: "create vote successfully",
-                poll : poll
+                message: "create Poll successfully",
+                poll : req.body
             }
         )
     } catch (error) {
@@ -109,7 +109,7 @@ const createOption = async(req, res) =>
         res.status(201).json(
             {
                 message: "create option successfully",
-                option : option
+                option : req.body
             })
     } catch (error) {
         res.status(500).send('Error creating option');
@@ -194,7 +194,7 @@ const createSubmit = async(req, res) =>
             res.status(201).json(
                 {
                     message: "create option successfully",
-                    submition : submition
+                    submition : req.body
                 })
         } catch (error) {
             res.status(500).send('Error creating option');
