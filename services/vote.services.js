@@ -60,12 +60,14 @@ const getAllPoll = async () => {
 }
 const updatePoll = async (poll_id, {
     user_id,
+    role,
     title,
     status,
     choose
 }) => {
     console.log(poll_id, {
         user_id,
+        role, 
         title,
         status,
         choose

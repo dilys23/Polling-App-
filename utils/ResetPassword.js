@@ -1,6 +1,6 @@
 const db = require("../database/connection");
 const verifyOTP = require("./verifyOTP");
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const resetPassword = async (email, otp, newpassword, cfmpassword) => {
     if (!email || !otp || !newpassword || !cfmpassword) {
         return {
