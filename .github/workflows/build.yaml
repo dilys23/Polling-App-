@@ -31,5 +31,5 @@
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/sgroup_backend
 
       - name: Verify
-        run: echo ${{ steps.docker build.outpus.digest }}
+        run: echo ${{ steps.docker build.outputs.digest }}
     
