@@ -48,8 +48,31 @@ jobs:
           echo "$SSH_PRIVATE_KEY" > private_key.pem
           chmod 600 private_key.pem
           ssh -i private_key.pem -o StrictHostKeyChecking=no ubuntu@3.106.182.153 << 'EOF'
-            cd ~/Polling-App-Server
+            # Dừng và xóa các container cũ nếu cần
+            docker stop polling-app-server-app-1 || true
+            docker rm polling-app-server-app-1 || true
+            docker stop my_mysql_db || true
+            docker rm my_mysql_db || true
+            
+            # Kéo hình ảnh Docker mới từ Docker Hub
             docker pull dilysnguyen/sgroup_be:latest
-            docker-compose down
-            docker-compose up -d
+
+            # Chạy container MySQL mới
+            docker run -d --name my_mysql_db \
+              --network my_network \
+              -e MYSQL_ROOT_PASSWORD=231203 \
+              -e MYSQL_DATABASE=sgroup_be \
+              -p 3306:3306 \
+              mysql:5.7
+
+            # Chạy container ứng dụng
+            docker run -d --name polling-app-server-app-1 \
+              --network my_network \
+              -e PORT=3000 \
+              -e DB_USER=root \
+              -e DB_PASS=231203 \
+              -e DB_NAME=sgroup_be \
+              -e DB_HOST=my_mysql_db \
+              -p 3000:3000 \
+              dilysnguyen/sgroup_be:latest
           EOF
