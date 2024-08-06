@@ -1,7 +1,7 @@
 # Sử dụng image Node.js làm base image
 FROM node:20.9.0
 
-# Đặt thư mục làm việc trong container
+
 WORKDIR /usr/src/app
 
 COPY . .
