@@ -7,6 +7,6 @@
    docker:
      runs-on: ubuntu-latest
      steps: 
-      - name: checkout
-        uses: action/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
     
