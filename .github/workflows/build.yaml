@@ -51,19 +51,18 @@ jobs:
             # Dừng và xóa các container cũ nếu cần
             docker stop polling-app-server-app-1 || true
             docker rm polling-app-server-app-1 || true
-            docker stop my_mysql_db || true
-            docker rm my_mysql_db || true
+        
             
             # Kéo hình ảnh Docker mới từ Docker Hub
             docker pull dilysnguyen/sgroup_be:latest
 
             # Chạy container MySQL mới
-            docker run -d --name my_mysql_db \
-              --network my_network \
-              -e MYSQL_ROOT_PASSWORD=231203 \
-              -e MYSQL_DATABASE=sgroup_be \
-              -p 3306:3306 \
-              mysql:5.7
+            # docker run -d --name my_mysql_db \
+            #   --network my_network \
+            #   -e MYSQL_ROOT_PASSWORD=231203 \
+            #   -e MYSQL_DATABASE=sgroup_be \
+            #   -p 3306:3306 \
+            #   mysql:5.7
 
             # Chạy container ứng dụng
             docker run -d --name polling-app-server-app-1 \

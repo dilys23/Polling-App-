@@ -7,7 +7,7 @@ WORKDIR /usr/src/app
 COPY . .
 
 # Cài đặt các phụ thuộc của ứng dụng
-# RUN npm install
+RUN npm install
 
 # Sao chép toàn bộ mã nguồn vào thư mục làm việc
 
